@@ -1,3 +1,5 @@
 #!/bin/bash
 
-g++ -Wall src/*.cpp -o build/bufferedreader
+cd build
+ln -s bufferedreader br
+g++ -Ofast -Wall ../src/*.cpp -o bufferedreader
