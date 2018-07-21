@@ -97,8 +97,6 @@ This is equivalent to the following:
         echo "Read line (${#line}): $line"
     done
 
-The advantage is that 
-
 # Equivalence with other command line tools
 
     > tr 'x' 'y'
