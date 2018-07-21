@@ -1,0 +1,76 @@
+### Using flags:   -d ,. --verbose --inclusive --strip --suffix -1 @ -2 ,
+Using string:  
+Output:        
+Lengths:
+0,
+Using string:  waza
+Output:        waza
+Lengths:
+4,
+Using string:  waz,
+Output:        waz,
+Lengths:
+4,
+Using string:  ,.
+Output:        
+Lengths:
+0,
+Using string:  ,
+Output:        ,
+Lengths:
+1,
+Using string:  wazzaa,.,.,.,.wazzaa
+Output:        wazzaa@@@@wazzaa
+Lengths:
+6,0,0,0,6,
+Using string:  ,.,.,,.,.wazzaa,.,.,,.,.
+Output:        @@,@@wazzaa@@,@
+Lengths:
+0,0,1,0,6,0,1,0,
+Using string:  ,.waza,.separate,.these,.words,.
+Output:        @waza@separate@these@words
+Lengths:
+0,4,8,5,5,
+Using string:  waza,.separate,.these,.words
+Output:        waza@separate@these@words
+Lengths:
+4,8,5,5,
+
+### Using flags:   -d ,. --verbose --exclusive --strip --suffix -1 @ -2 ,
+Using string:  
+Output:        
+Lengths:
+0,
+Using string:  waza
+Output:        waza
+Lengths:
+4,
+Using string:  waz,
+Output:        waz,
+Lengths:
+4,
+Using string:  ,.
+Output:        @
+Lengths:
+0,0,
+Using string:  ,
+Output:        ,
+Lengths:
+1,
+Using string:  wazzaa,.,.,.,.wazzaa
+Output:        wazzaa@@@@wazzaa
+Lengths:
+6,0,0,0,6,
+Using string:  ,.,.,,.,.wazzaa,.,.,,.,.
+Output:        @@,@@wazzaa@@,@@
+Lengths:
+0,0,1,0,6,0,1,0,0,
+Using string:  ,.waza,.separate,.these,.words,.
+Output:        @waza@separate@these@words@
+Lengths:
+0,4,8,5,5,0,
+Using string:  waza,.separate,.these,.words
+Output:        waza@separate@these@words
+Lengths:
+4,8,5,5,
+

@@ -1,0 +1,76 @@
+### Using flags:   -d ,. --verbose --inclusive --no-strip --suffix -1 @ -2 ,
+Using string:  
+Output:        
+Lengths:
+0,
+Using string:  waza
+Output:        waza
+Lengths:
+4,
+Using string:  waz,
+Output:        waz,
+Lengths:
+4,
+Using string:  ,.
+Output:        ,.
+Lengths:
+2,
+Using string:  ,
+Output:        ,
+Lengths:
+1,
+Using string:  wazzaa,.,.,.,.wazzaa
+Output:        wazzaa,.@,.@,.@,.@wazzaa
+Lengths:
+8,2,2,2,6,
+Using string:  ,.,.,,.,.wazzaa,.,.,,.,.
+Output:        ,.@,.@,,.@,.@wazzaa,.@,.@,,.@,.
+Lengths:
+2,2,3,2,8,2,3,2,
+Using string:  ,.waza,.separate,.these,.words,.
+Output:        ,.@waza,.@separate,.@these,.@words,.
+Lengths:
+2,6,10,7,7,
+Using string:  waza,.separate,.these,.words
+Output:        waza,.@separate,.@these,.@words
+Lengths:
+6,10,7,5,
+
+### Using flags:   -d ,. --verbose --exclusive --no-strip --suffix -1 @ -2 ,
+Using string:  
+Output:        
+Lengths:
+0,
+Using string:  waza
+Output:        waza
+Lengths:
+4,
+Using string:  waz,
+Output:        waz,
+Lengths:
+4,
+Using string:  ,.
+Output:        ,.@
+Lengths:
+2,0,
+Using string:  ,
+Output:        ,
+Lengths:
+1,
+Using string:  wazzaa,.,.,.,.wazzaa
+Output:        wazzaa,.@,.@,.@,.@wazzaa
+Lengths:
+8,2,2,2,6,
+Using string:  ,.,.,,.,.wazzaa,.,.,,.,.
+Output:        ,.@,.@,,.@,.@wazzaa,.@,.@,,.@,.@
+Lengths:
+2,2,3,2,8,2,3,2,0,
+Using string:  ,.waza,.separate,.these,.words,.
+Output:        ,.@waza,.@separate,.@these,.@words,.@
+Lengths:
+2,6,10,7,7,0,
+Using string:  waza,.separate,.these,.words
+Output:        waza,.@separate,.@these,.@words
+Lengths:
+6,10,7,5,
+
