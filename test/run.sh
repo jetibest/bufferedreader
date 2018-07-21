@@ -5,7 +5,7 @@ testcase()
 	local flags="$1"
 	local str="$2"
 	echo -e "Using string:  $str"
-	echo -ne $str | build/bufferedreader $flags >/tmp/test.a 2>/tmp/test.b
+	echo -ne $str | ../build/bufferedreader $flags >/tmp/test.a 2>/tmp/test.b
 	echo -e "Output:        $(cat /tmp/test.a)"
 	echo -e "Lengths:\n$(cat /tmp/test.b)"
 	rm -f /tmp/test.a 2>/dev/null
