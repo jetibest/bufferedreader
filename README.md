@@ -3,6 +3,16 @@ Command line utility to read streams line by line or split stream in any delimit
 This tool does not actually buffer any data, however, this could easily be implemented.
 Future TODO includes support for regular expressions in the delimiter, and possibly backreferences to matched groups in the separator.
 
+# Install
+
+    git clone https://github.com/jetibest/bufferedreader.git
+    cd bufferedreader
+    ./install.sh
+
+# Testing
+    cd test
+    ./test.sh
+
 # Examples
 
     > echo -e "hello world" | br -d ' ' -s $'\n'
