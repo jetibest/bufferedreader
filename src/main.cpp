@@ -50,6 +50,7 @@ int main(int argc, char* argv[])
 	int inclusive = 1;
 	int nostrip = 0;
 	int verbose = 0;
+	string format("");
 	string separator1("");
 	string separator2("\n");
 	string delimiter("\n");
@@ -129,6 +130,11 @@ int main(int argc, char* argv[])
 					separator2 = value;
 					++i;
 				}
+				else if(arg == "-f")
+				{
+					format = value;
+					++i;
+				}
 			}
 		}
 		for(;i<argc;++i)
@@ -138,7 +144,14 @@ int main(int argc, char* argv[])
 		}
 	}
 	
-	if(prefix)
+	if(format.length())
+	{
+		if(format == "mpjpeg")
+		{
+			dompjpeg(delimiter, separator1, separator2);
+		}
+	}
+	else if(prefix)
 	{
 		if(verbose)
 		{

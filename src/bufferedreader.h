@@ -4,6 +4,117 @@
 
 using namespace std;
 
+// For example: ffmpeg -input_format mjpeg -i /dev/video0 -f mpjpeg - | br -d '--ffmpeg' -f 'mpjpeg' | ...
+void dompjpeg(string &boundary, string &separator1, string &separator2)
+{
+    string delimiter = boundary + "\r\n";
+    size_t delimiter_offset = 0;
+    bool header = false;
+    string key;
+    string value;
+    int header_offset = 0;
+    int bytecount = 0;
+    char c;
+    
+    while(cin.get(c))
+    {
+        if(header)
+        {
+            if(header_offset == -1)
+            {
+                if(c == '\n')
+                {
+                    ++header_offset;
+                }
+            }
+            else if(header_offset == 0)
+            {
+                if(c == '\r')
+                {
+                    if(key.length())
+                    {
+                        key.clear();
+                        header_offset = -1;
+                    }
+                    else
+                    {
+                        header_offset = 10;
+                    }
+                }
+                else if(c == ':')
+                {
+                    ++header_offset;
+                }
+                else
+                {
+                    key += tolower(c);
+                }
+            }
+            else if(header_offset == 1)
+            {
+                if(c == '\r')
+                {
+                    header_offset = 2;
+                }
+                else if(c != ' ')
+                {
+                    value += c;
+                }
+            }
+            else if(header_offset == 2)
+            {
+                if(c == '\n')
+                {
+                    if(key == "content-length")
+                    {
+                        bytecount = stoi(value);
+                    }
+                    
+                    header_offset = 0;
+                    key.clear();
+                    value.clear();
+                }
+                else
+                {
+                    header_offset = 1;
+                }
+            }
+            else if(header_offset == 10)
+            {
+                if(c == '\n')
+                {
+                    header_offset = 0;
+                    header = false;
+                    
+                    if(bytecount)
+                    {
+                        char* buffer = new char[bytecount];
+                        cin.read(buffer, bytecount);
+                        if(cin)
+                        {
+                            cout << buffer << separator1;
+                            cerr << bytecount << separator2;
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+        else if(c == delimiter[delimiter_offset])
+        {
+            ++delimiter_offset;
+            if(delimiter_offset == delimiter.length())
+            {
+                header = true;
+                delimiter_offset = 0;
+            }
+        }
+    }
+}
+
 template<int prefix, int verbose, int inclusive, int nostrip> void dobr(string &delimiter, string &separator1, string &separator2)
 {
     int offset = 0;
