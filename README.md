@@ -71,6 +71,33 @@ The `stderr` will contain the length of each frame, so while reading `stdout` yo
     34
     54
 
+# Example read line by line
+
+Read stdin line by line.
+
+    #!/bin/bash
+    fd=$(mktemp -u)
+    mkfifo $fd
+    exec 3<>$fd
+    rm $fd
+    
+    br -d $'\n' -v 2>&1 >&3 | while read count
+    do
+        read -u 3 -N $count -r line
+        echo "Read line ($count): $line"
+    done
+    
+    exec 3>&-
+
+This is equivalent to the following:
+
+    #!/bin/bash
+    while IFS='' read -r line || [[ -n "$line" ]]
+    do
+        echo "Read line (${#line}): $line"
+    done
+
+The advantage is that 
 
 # Equivalence with other command line tools
 
